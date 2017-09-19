@@ -1,0 +1,15 @@
+<br><br>
+<form name="studentEditForm" class="form-group">
+	
+	<!-- Rollno: <input type="number" name="rollNo" ng-model="student.rollNo" required> -->
+	<!-- <span ng-class="'errorColor'" ng-show="studentForm.rollNo.$error.required">Please enter something!</span><br><br> -->
+	Name: <input type="text" name="name" class="form-control" ng-model="student.name" required><br><br>
+	Age:   <input type="number" name="age" class="form-control" ng-model="student.age" required><br><br>
+	Email: <input type="email" name="email" class="form-control" ng-model="student.email" required><br><br>
+	Date: <input type="text" name="date" class="form-control" ng-model="student.date" required><br><br>
+	Gender: Male: <input type="radio" ng-model="student.isMale" value="true" >
+	female: <input type="radio" ng-model="student.isMale" value="false"><br><br>
+	<button ng-click="saveEdit()" ng-disabled="studentEditForm.$invalid" class="btn btn-info btn-lg">
+	<span class="glyphicon glyphicon-edit"></span>Edit</button><br><br><br>
+<button ng-click="goBack()" class="btn btn-default">Go Back</button>	
+</form>
