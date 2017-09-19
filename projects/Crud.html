@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html ng-app="jsonGApp">
+	<head>
+		<title>NumberApi service part2</title>
+		<script src="angular.js"></script>
+		<script src="jquery-3.2.1.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<style type="text/css">
+			.maleColorStyle{
+				color: red;
+			}
+			.femaleColorStyle{
+				color:  blue;
+			}
+			.errorColor{
+				color: red;
+			}
+		</style>
+	</head>
+	<body>
+		<div ng-controller="jsonGCtrl">
+			<br><br>
+			<div class="container">
+				<form name="viewByIdForm">
+					<div class="input-group">
+						Roll Number: <input type="text" ng-model="searchByIdValue" required>
+					</div><br>
+					<button class="btn btn-default" ng-click="searchById(searchByIdValue)" ng-disabled="viewByIdForm.$invalid">Search</button>
+				</form><br><br>
+				<br><br>
+				<form name="studentForm">
+					<!-- <div class="container"> -->
+					Rollno: <input type="number" name="rollNo" ng-model="student.rollNo" required>
+					<span ng-class="'errorColor'" ng-show="studentForm.rollNo.$error.required">Please enter something!</span><br><br>
+					Name: <input type="text" name="name" ng-model="student.name" required><br><br>
+					Age:   <input type="number" name="age" ng-model="student.age" required><br><br>
+					Email: <input type="email" name="email" ng-model="student.email" required><br><br>
+					Date: <input type="text" name="date" ng-model="student.date" required><br><br>
+					Gender: Male: <input type="radio" ng-model="student.isMale" value="true" >
+					female: <input type="radio" ng-model="student.isMale" value="false"><br><br>
+					<button ng-click="add()" class="btn btn-default" ng-disabled="studentForm.$invalid">Add</button><br><br><br>
+					<!-- </div> -->
+				</form>
+				
+				<button  class="btn btn-default" ng-click="display()">Display</button>
+				<button  class="btn btn-default" ng-click="update()">Update</button><br><br>
+				<!-- <div class="container"> -->
+				<div class="table-responsive">
+					<table align="" border="3" class="table table-striped">
+						<tr>
+							<th>Rollno</th>
+							<th>Name</th>
+							<th>Age</th>
+							<th>Email</th>
+							<th>Date</th>
+							<th>Gender</th>
+							<th>Delete</th>
+						</tr>
+						<tr ng-repeat="Student in printStudents" ng-click="bindSelectedData(Student)">
+							<td>{{::Student.rollNo}}</td>
+							<td>{{::Student.name}}</td>
+							<td>{{::Student.age}}</td>
+							<td>{{::Student.email}}</td>
+							<td>{{::Student.date}}</td>
+							<td  ng-class="Student.isMale ? 'maleColorStyle' : 'femaleColorStyle'">{{Student.isMale | genderCase}}</td>
+							<td><button ng-click="delete($index)" class="btn btn-danger">Delete</button></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<script>
+						var app=angular.module('jsonGApp',[]);
+						
+						app.filter('genderCase', function () {
+							
+							return function (isMale) {
+							switch(isMale){
+								case true:
+								return "Male";
+								case false:
+								return "Female";
+							}
+						};
+					});
+						app.service('httpService',function($http){
+						
+						this.getData=function(){
+						return $http.get('http://gsmktg.azurewebsites.net/api/v1/techlabs/test/students');
+						};
+						this.getStudentDataById = function (studentObj) {
+						return $http.get('http://gsmktg.azurewebsites.net/api/v1/techlabs/test/students/' + studentObj);
+						}
+						this.postData=function(studentObj){
+							console.log(studentObj);
+							return $http.post('http://gsmktg.azurewebsites.net/api/v1/techlabs/test/students',studentObj);
+						};
+						this.updateData = function (studentObj) {
+						$http.put('http://gsmktg.azurewebsites.net/api/v1/techlabs/test/students/'+studentObj.rollNo,studentObj);
+						};
+						
+						this.deletestudData = function (studentObj) {
+						$http.delete('http://gsmktg.azurewebsites.net/api/v1/techlabs/test/students/' + studentObj, studentObj);
+							};
+						});
+						
+						app.controller('jsonGCtrl',function($scope,$window,httpService){
+							$scope.display=function(){
+								httpService.getData()
+								
+								.then(function(response){
+									console.log(response.data);
+									$scope.printStudents=response.data;
+								});
+							};
+							$scope.add=function(){
+								httpService.postData($scope.student);
+							};
+							
+							$scope.delete=function (index) {
+								$scope.deletestudData = $scope.printStudents[index].rollNo;
+								console.log( $scope.printStudents[index].rollNo)
+								httpService.deletestudData($scope.deletestudData);
+							}
+							$scope.bindSelectedData=function(Student){
+								$scope.student=Student;
+								console.log(Student);
+							}
+							
+							
+							$scope.update = function () {
+								console.log($scope.student);
+								httpService.updateData($scope.student,$scope.student);
+							}
+							$scope.searchById = function (studentId) {
+			
+							httpService.viewStudentId = studentId;
+							console.log(httpService.viewStudentId)
+			
+							httpService.getStudentDataById(httpService.viewStudentId).then(function (response) {
+								$scope.student = response.data;
+							
+							});
+							}
+			
+						});
+				
+			</script>
+		</body>
+	</html>

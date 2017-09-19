@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>bluebox</title>
+		<script src="jquery-3.2.1.js"></script>
+	</head>
+	<body id="body">
+		<div id="div"></div>
+		<script type="text/javascript">
+		function display() {
+		var blueButtonValue = Math.floor(Math.random() * 100);
+		var attempts=0;
+		for (var i = 0; i < 100; i++) {
+		var btn = $("<button/>",{html:"x",value:i,class:'btn'});	
+		console.log(blueButtonValue);
+		$('#div').append(btn);
+		}
+
+		$('.btn').click(function(){
+			if ($(this).val()<blueButtonValue) {
+				$(this).css("background","Red");
+			}else if ($(this).val() > blueButtonValue) {
+		$(this).css("background","Green");
+		} else {
+		$(this).css("background","Blue");
+		alert('guessed right');
+		window.location.reload();
+		}
+		attempts++;
+		if(attempts>4){
+		alert("over attempts");
+		window.location.reload();
+		}
+		});
+		
+		}
+			$(document).ready(display);
+		</script>
+	</body>
+</html>

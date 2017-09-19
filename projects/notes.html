@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>notes</title>
+		<script src="jquery-3.2.1.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<style type="text/css">
+			#body1{
+				padding-top: 5%;
+			}
+			#div1{
+				background: #D6F1DC;
+				border-radius: 2em;
+			}
+			#divForm{
+				padding: 2em;
+							background:	#F4F4F4;
+				border-radius: 2em;
+				margin-bottom: 2em;
+				/*text-shadow: 1px 1px #A9B9FF;*/
+			}
+		</style>		
+	</head>
+	<body id="body1" class="container">
+		<div id="divForm" class="form-group">
+			<label for="NoteTitle">Note Title</label>
+			<input type="text" class="form-control" id="NoteTitle"><br><br>
+			<label for="NoteDiscription">Note Discription</label>
+			<textarea id="NoteDiscription" class="form-control" rows="5"></textarea><br><br>
+			<button id="buttonNote" class="btn btn-default" >Add</button>
+		</div>
+		<script type="text/javascript">
+		function display() {
+						
+						var noteArray=[];
+						 	noteArray= JSON.parse(localStorage.getItem("swabhav.notecomment"));
+						
+						$('#buttonNote').click(function(){
+							 var createText= $('#NoteTitle').val();
+							 var createDiscription= $('#NoteDiscription').val();
+						
+							var noteObj={};
+							noteObj.id= new Date().getTime();
+							noteObj.title=createText;
+							noteObj.discription=createDiscription;
+							console.log(noteObj);
+							noteArray.push(noteObj);
+						
+							console.log(noteArray);
+							save(noteArray);
+							window.location.reload();
+
+											});
+
+													function save(noteArray){
+					
+							console.log(noteArray);
+							localStorage.setItem('swabhav.notecomment', JSON.stringify(noteArray));
+						}
+							function display(){
+							
+							//var section=$("<section/>",{html:""});
+								for (var i=0;i<noteArray.length;i++) {
+								
+									var label1=$('<label/>',{html:"NOTE ID: "});
+										var label2=$('<label/>',{html:"NOTE TITLE: "});
+											var label3=$('<label/>',{html:"NOTE DISCRIPTION: "});
+												var div1=$('<div/>',{class:"well"});
+													var btn1=$('<button/>',{html:"Delete",class:"btn btn-danger",id:"btn1"});
+														
+													div1.append(label1.html()+noteArray[i].id+"<br>"+label2.html()
+																	+noteArray[i].title+"<br>"+label3.html()+noteArray[i].discription+"<br>"+"<br>");
+													$('#body1').append(div1);
+													//document.body.append(section);
+													div1.append(btn1);
+													btn1.click(function(){
+														var div=this.div1;
+														this.parentNode.remove(div1);
+														noteArray.splice(this,1);
+														save(noteArray);
+													});
+												}
+											}
+											
+											display();
+
+							}
+								$(document).ready(display);
+							</script>
+						</body>
+					</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html ng-app="numberApp">
+	<head>
+		<title>NumberApi</title>
+		<script src="angular.js"></script>
+	</head>
+	<body>
+		<div ng-controller="numberCtrl">
+			<input type="text" ng-model="textValue">
+			<button ng-click="display()">Click</button>
+			<ul ng-repeat="numberResponse in numbersArray track by $index">
+				<h3>{{numberResponse}}</h3>
+			</ul>
+		</div>
+		<script>
+					var app=angular.module('numberApp',[]);
+					
+					app.service('httpService',function($http,$q){
+						
+						
+					this.getData=function(no){
+					var def=$q.defer();
+					$http.get('http://numbersapi.com/'+no)
+					.success(function(data){
+						def.resolve(data);
+					})
+					.error(function(){
+						def.reject("failed to load");
+					});
+					return def.promise;
+					};
+					});
+					app.controller('numberCtrl',function($scope,httpService){
+						
+						$scope.numbersArray=[];
+						$scope.display=function(){
+							httpService.getData($scope.textValue)
+							
+							.then(function(data){
+								console.log(data);
+								$scope.numbersArray.push(data);
+							});
+						};
+						
+					});
+			
+		</script>
+	</body>
+</html>
