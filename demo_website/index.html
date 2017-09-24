@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Demo</title>
+    <link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+    <div id="preloader"></div>
+
+
+    <header id="header">
+        <div class="container">
+
+            <div id="logo" class="pull-left">
+                <h3>
+        LOGO
+        </h3>
+            </div>
+
+            <nav id="nav-menu-container">
+                <ul class="nav-menu">
+                    <li class="menu-active"><a href="#">Partner</a></li>
+                    <li><a href="#">Workers</a></li>
+                    <li><a href="#">About/Help</a></li>
+                </ul>
+            </nav>
+            <!-- #nav-menu-container -->
+            <nav id="">
+                <ul class="nav-menu socialmenu">
+                    <li class="">
+                        <a href="http://www.facebook.com"><img src="facebook.png" /></a>
+                    </li>
+                    <li>
+                        <a href="http://www.instagram.com"><img src="insta.png" /></a>
+                    </li>
+                    <li>
+                        <a href="http://www.twitter.com"><img src="twitter.png" /></a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <!-- #header -->
+
+    <section id="topdiv">
+        <div class="container" id="firstdiv">
+            <div id="signupform">
+                <form onsubmit="showSuccess();return false;">
+                    <h3>Sign up to Work</h3>
+                    <label>First Name</label><br/>
+                    <input type="text" id="firstname" required/><br/>
+                    <label>Last Name</label><br/>
+                    <input type="text" id="secondname" required/><br/>
+                    <label>Email</label><br/>
+                    <input type="email" id="email" required/><br/>
+                    <label>Mobile No.</label><br/>
+                    <input type="text" id="mobile" maxlength="10" pattern="[1-9]{1}[0-9]{9}" title="Enter numbers upto 10 digit" required/><br/>
+                    <label>Create Password</label><br/>
+                    <input type="password" required/><br/>
+                    <label>City</label><br/>
+                    <input type="text" id="city" required/><br/>
+                    <button type="submit">SIGN UP</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    <section id="middiv">
+        <div class="container">
+            <div class="row">
+                <h2>You are your BOSS</h2>
+                <h6>Deliver, earn on your schedule</h6>
+                <div id="one">
+                    <div id="headingone">
+                        <div class="middivimg"><img src="mobile.png" /></div>
+                        <div class="textdiv">data</div>
+                    </div>
+                    <div id="headingthree">
+                        <div class="middivimg"><img src="cart.png" /></div>
+                        <div class="textdiv">data</div>
+                    </div>
+                </div>
+                <div id="headingtwo">
+                    <div class="middivimg"><img src="gps.png" /></div>
+                    <div class="textdiv">data</div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <div id="successPop">
+        <b class="closesuccess">x</b>
+        <h4 id="successmsg">Welcome Aboard Pal!</h5>
+        <h5><u>Here's a quick brief of your Profile</u></h6>
+        <h6 id="name_text"></h6>
+        <h6 id="email_text"></h6>
+        <h6 id="mobile_text"></h6>
+        <h6 id="city_text"></h6>
+    </div>
+    <!--==========================
+  Footer
+============================-->
+    <footer id="footer">
+        <div class="container" style="width:100% !important">
+            <div class="row">
+            </div>
+        </div>
+    </footer>
+    <!-- #footer -->
+  <script src="jquery.min.js"></script>
+  <script>
+  function showSuccess(){
+    $('#successPop').show();
+    $('#name_text').html('Name : '+$('#firstname').val()+' '+$('#secondname').val());
+    $('#email_text').html('Email : '+$('#email').val());
+    $('#mobile_text').html('Mobile No.: '+$('#mobile').val());
+    $('#city_text').html('City : '+$('#city').val());
+    $('#signupform input').val('');
+    
+  }
+  $('.closesuccess').click(function(event) {
+    $('#successPop').hide();
+  });
+  </script>
+</body>
+
+</html>

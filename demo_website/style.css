@@ -1,0 +1,269 @@
+body {
+    background: #fff;
+    color: #666666;
+    font-family: "Open Sans", sans-serif;
+    margin: 0px;
+}
+
+/*
+
+a {
+  color: #03C4EB;
+  transition: 0.5s;
+}*/
+
+p {
+    padding: 0;
+    margin: 0 0 30px 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Raleway", sans-serif;
+    font-weight: 400;
+    margin: 20px 0 0 0;
+    padding: 0;
+    text-align: center;
+}
+
+#firstdiv {
+    background: url(backg.jpg) top center fixed;
+    background-size: cover;
+    height: 450px;
+}
+
+#header {
+    background: #f5f5f5;
+    padding: 20px 0;
+    height: 32px;
+    position: fixed;
+    width: 100%;
+    z-index: 999;
+}
+
+#header #logo {
+    float: left;
+}
+
+#header #logo h3 {
+    color: orange;
+    font-size: 25px;
+    margin: 0;
+    padding-left: 12px;
+    line-height: 1;
+    font-family: "Raleway", sans-serif;
+    font-weight: bold;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.nav-menu,
+.nav-menu * {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.nav-menu ul {
+    position: absolute;
+    display: none;
+    top: 100%;
+    left: 0;
+    z-index: 99;
+}
+
+.nav-menu li {
+    position: relative;
+    white-space: nowrap;
+    float: left;
+}
+
+.nav-menu li:hover> ul {
+    display: block;
+}
+
+.nav-menu ul ul {
+    top: 0;
+    left: 100%;
+}
+
+.nav-menu ul li {
+    min-width: 180px;
+}
+
+
+/* Nav Meu Container */
+
+#nav-menu-container {
+    margin-left: 35%;
+}
+
+.nav-menu a {
+    padding: 10px 15px;
+    text-decoration: none;
+    display: inline-block;
+    color: black;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+    outline: none;
+}
+
+.nav-menu ul ul {
+    margin: 0;
+}
+
+.nav-menu img {
+    width: 24px;
+    height: 24px;
+}
+
+.socialmenu {
+    float: right;
+    margin-right: 10px;
+}
+
+.socialmenu a {
+    background: orange;
+    border-radius: 50px;
+    padding: 2px;
+    margin-left: 15px;
+    width: 26px;
+}
+
+#headingone,
+#headingtwo,
+#headingthree {
+    background: #efefef;
+    padding: 2%;
+    margin: 1%;
+}
+
+#one {
+    width: 52%;
+    position: absolute;
+    margin: 5px;
+}
+
+#headingone {
+    width: 100%;
+    height: 165px;
+}
+
+#middiv img {
+    width: 100px;
+    margin: 18%;
+}
+
+.middivimg {
+    width: 165px;
+    background: orange;
+    border-radius: 50%;
+    height: 165px;
+    text-align: center;
+}
+
+#headingtwo {
+    width: 39%;
+    position: absolute;
+    margin-left: 56%;
+    height: 340px;
+    margin-bottom: 10%;
+}
+
+#headingthree {
+    width: 100%;
+    height: 165px;
+}
+
+#headingthree div {
+    float: right;
+    top: 196px;
+}
+
+.textdiv {
+    position: absolute;
+    padding: 6%;
+    top: 1px;
+    margin-left: 30%;
+}
+
+#headingthree .textdiv {
+    margin-left: 1px;
+}
+
+#footer {
+    background: #383636;
+    height: 30px;
+    padding: 15px 0;
+    color: #fff;
+    position: fixed;
+    width: 100%;
+    bottom: 0px;
+}
+
+#signupform {
+    margin-top: 6%;
+    background: rgba(255, 255, 255, 0.78);
+    padding: 2%;
+    float: right;
+    margin-right: 12%;
+}
+
+input {
+    background: transparent;
+    border: 0px;
+    border-bottom: 1px solid black;
+}
+
+label {
+    font-size: 13px;
+    margin-top: 1px;
+}
+
+button {
+    background: orange;
+    border: 1px solid orange;
+    padding: 6px;
+    color: white;
+    margin-top: 10px;
+    text-align: center;
+}
+
+form>h3 {
+    margin-top: 0px;
+    margin-bottom: 8px;
+}
+
+textarea:focus, input:focus{
+    outline: none;
+}
+
+#successPop{
+  height: 245px;
+    position: absolute;
+    z-index: 99999;
+    width: 320px;
+    padding: 10px;
+    background: rgba(9, 9, 9, 0.64);
+    color: white;
+    top: 13%;
+    left: 33%;
+    border: 1px solid #4D4F53;
+    margin: 0px;
+    display: none;
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(164, 164, 164, 1);
+    box-shadow: 0px 0px 5px 0px rgba(164, 164, 164, 1);
+    text-align: center;
+}
+
+.closesuccess{
+    color:white;
+    text-align: right;
+    float:right;
+    cursor: pointer;
+}
